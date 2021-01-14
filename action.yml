@@ -31,7 +31,23 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.source-directory }} ${{ inputs.destination-github-username }} ${{ inputs.destination-repository-name }} ${{ inputs.user-email }} ${{ inputs.destination-repository-username }} ${{ inputs.target-branch }} ${{ inputs.commit-message }} ${{ inputs.target-repo-directory }}
+    - run: SOURCE_DIRECTORY=${{ inputs.source-directory }}
+      shell: bash
+    - run: DESTINATION_GITHUB_USERNAME=${{ inputs.destination-github-username }}
+      shell: bash
+    - run: DESTINATION_REPOSITORY_NAME=${{ inputs.destination-repository-name }}
+      shell: bash
+    - run: USER_EMAIL=${{ inputs.user-email }}
+      shell: bash
+    - run: DESTINATION_REPOSITORY_USERNAME=${{ inputs.destination-repository-username }}
+      shell: bash
+    - run: TARGET_BRANCH=${{ inputs.target-branch }}
+      shell: bash
+    - run: COMMIT_MESSAGE=${{ inputs.commit-message }}
+      shell: bash
+    - run: TARGET_REPO_DIRECTORY=${{ inputs.target-repo-directory }}
+      shell: bash
+    - run: ${{ github.action_path }}/entrypoint.sh
       shell: bash
 branding:
   icon: 'git-commit'
