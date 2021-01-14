@@ -2,7 +2,6 @@
 
 set -e  # if a command fails it stops the execution
 echo "Starts"
-printenv
 
 echo "SOURCE_DIRECTORY $SOURCE_DIRECTORY"
 echo "DESTINATION_GITHUB_USERNAME $DESTINATION_GITHUB_USERNAME"
@@ -13,6 +12,7 @@ echo "TARGET_BRANCH $TARGET_BRANCH"
 echo "COMMIT_MESSAGE $COMMIT_MESSAGE"
 echo "TARGET_REPO_DIRECTORY $TARGET_REPO_DIRECTORY"
 
+set -u  # script fails if trying to access to an undefined variable
 if [ -z "$DESTINATION_REPOSITORY_USERNAME" ]
 then
   DESTINATION_REPOSITORY_USERNAME="$DESTINATION_GITHUB_USERNAME"
@@ -43,8 +43,6 @@ if [ -z "$COMMIT_MESSAGE" ]
 then
   COMMIT_MESSAGE="Update $DESTINATION_REPOSITORY_NAME from $GITHUB_REPOSITORY"
 fi
-
-set -u  # script fails if trying to access to an undefined variable
 
 git add .
 git status
