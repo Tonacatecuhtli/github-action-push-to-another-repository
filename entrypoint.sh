@@ -5,6 +5,8 @@ set -u  # script fails if trying to access to an undefined variable
 
 echo "Starts"
 printenv
+echo "#####################"
+env
 # Githup automatically creates ENV variabels with INPUT_<variable-name> from the actions.yml
 # https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/metadata-syntax-for-github-actions#inputs
 echo "INPUT_SOURCE_DIRECTORY $INPUT_SOURCE_DIRECTORY"
