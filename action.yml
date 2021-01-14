@@ -29,17 +29,10 @@ inputs:
     description: 'Target directory in the destination repository'
     required: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.source-directory }}
-    - ${{ inputs.destination-github-username }}
-    - ${{ inputs.destination-repository-name }}
-    - ${{ inputs.user-email }}
-    - ${{ inputs.destination-repository-username }}
-    - ${{ inputs.target-branch }}
-    - ${{ inputs.commit-message }}
-    - ${{ inputs.target-repo-directory }}
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.source-directory }} ${{ inputs.destination-github-username }} ${{ inputs.destination-repository-name }} ${{ inputs.user-email }} ${{ inputs.destination-repository-username }} ${{ inputs.target-branch }} ${{ inputs.commit-message }} ${{ inputs.target-repo-directory }}
+      shell: bash
 branding:
   icon: 'git-commit'
   color: 'green'
