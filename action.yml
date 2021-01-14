@@ -1,30 +1,30 @@
 name: 'Push directory to another repository'
 description: 'Useful to push files to another repository to be used, for example, via github pages'
 inputs:
-  SOURCE_DIRECTORY:
+  source-directory:
     description: 'Source directory from the origin directory'
     required: true
-  DESTINATION_GITHUB_USERNAME:
+  destination-github-username:
     description: 'Name of the destination username/organization'
     required: true
-  DESTINATION_REPOSITORY_NAME:
+  destination-repository-name:
     description: 'Destination repository'
     required: true
-  USER_EMAIL:
+  user-email:
     description: 'Email for the git commit'
     required: true
-  DESTINATION_REPOSITORY_USERNAME:
+  destination-repository-username:
     description: '[Optional] Username/organization for the destination repository'
     required: false
     default: ''
-  TARGET_BRANCH:
+  target-branch:
     description: '[Optional] set target branch name for the destination repository. Defaults to "master"'
     default: 'master'
     required: false
-  COMMIT_MESSAGE:
+  commit-message:
     description: '[Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo'
     required: false
-  TARGET_REPO_DIRECTORY:
+  target-repo-directory:
     description: 'Target directory in the destination repository'
     required: false
 runs:
@@ -32,6 +32,9 @@ runs:
   steps:
     - run: ${{ github.action_path }}/entrypoint.sh
       shell: bash
+      env:
+        SOURCE_DIRECTORY: ${{ inputs.source-directory }}
+        DESTINATION_GITHUB_USERNAME: ${{ inputs.destination-github-username }}
 branding:
   icon: 'git-commit'
   color: 'green'
