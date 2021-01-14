@@ -4,16 +4,16 @@ inputs:
   source-directory:
     description: 'Source directory from the origin directory'
     required: true
-  destination-repository-folder:
-    description: '[Optional] Path to the folder of the destination repository the files should be committed'
-    required: false
-    default: '/'
   destination-github-repository-username:
     description: 'Name of the destination GitHub username/organization'
     required: true
   destination-github-repository-name:
     description: 'Name of the destination GitHub repository'
     required: true
+  destination-repository-folder:
+    description: '[Optional] Path to the folder of the destination repository the files should be committed'
+    required: false
+    default: '/'
   user-email:
     description: 'Sets: git config --global user.email'
     required: true
@@ -35,9 +35,9 @@ runs:
       shell: bash
       env:
         SOURCE_DIRECTORY: ${{ inputs.source-directory }}
-        DESTINATION_REPOSITORY_FOLDER: ${{ inputs.destination-repository-folder }}
         DESTINATION_GITHUB_REPOSITORY_USERNAME: ${{ inputs.destination-github-repository-username }}
         DESTINATION_GITHUB_REPOSITORY_NAME: ${{ inputs.destination-github-repository-name }}
+        DESTINATION_REPOSITORY_FOLDER: ${{ inputs.destination-repository-folder }}
         USER_EMAIL: ${{ inputs.user-email }}
         USER_NAME: ${{ inputs.user-name }}
         TARGET_BRANCH: ${{ inputs.target-branch }}
