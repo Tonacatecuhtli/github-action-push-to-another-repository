@@ -1,8 +1,6 @@
 #!/bin/bash
 
 set -e  # if a command fails it stops the execution
-set -u  # script fails if trying to access to an undefined variable
-
 echo "Starts"
 printenv
 
@@ -45,6 +43,8 @@ if [ -z "$COMMIT_MESSAGE" ]
 then
   COMMIT_MESSAGE="Update $DESTINATION_REPOSITORY_NAME from $GITHUB_REPOSITORY"
 fi
+
+set -u  # script fails if trying to access to an undefined variable
 
 git add .
 git status
