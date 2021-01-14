@@ -39,9 +39,10 @@ echo "Files that will be pushed"
 ls -la
 
 echo "Adding git commit"
-
-ORIGIN_COMMIT="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
+if [ -z "$COMMIT_MESSAGE" ]
+then
+  COMMIT_MESSAGE="Update $DESTINATION_REPOSITORY_NAME from $GITHUB_REPOSITORY"
+fi
 
 git add .
 git status
