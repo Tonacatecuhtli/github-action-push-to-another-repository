@@ -4,29 +4,30 @@ inputs:
   source-directory:
     description: 'Source directory from the origin directory'
     required: true
-  destination-github-username:
-    description: 'Name of the destination username/organization'
+  destination-repository-folder:
+    description: '[Optional] Path to the folder of the destination repository the files should be committed'
+    required: false
+    default: '/'
+  destination-github-repository-username:
+    description: 'Name of the destination GitHub username/organization'
     required: true
-  destination-repository-name:
-    description: 'Destination repository'
+  destination-github-repository-name:
+    description: 'Name of the destination GitHub repository'
     required: true
   user-email:
-    description: 'Email for the git commit'
+    description: 'Sets: git config --global user.email'
     required: true
-  destination-repository-username:
-    description: '[Optional] Username/organization for the destination repository'
-    required: false
-    default: ''
+  user-name:
+    description: 'Sets: git config --global user.name'
+    required: true
   target-branch:
     description: '[Optional] set target branch name for the destination repository. Defaults to "master"'
     default: 'master'
     required: false
   commit-message:
-    description: '[Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo'
+    description: '[Optional] commit message for the output repository. DEFAULT: Updated $DESTINATION_GITHUB_REPOSITORY_NAME from $GITHUB_REPOSITORY with user $USER_EMAIL'
     required: false
-  target-repo-directory:
-    description: 'Target directory in the destination repository'
-    required: false
+
 runs:
   using: "composite"
   steps:
@@ -34,12 +35,14 @@ runs:
       shell: bash
       env:
         SOURCE_DIRECTORY: ${{ inputs.source-directory }}
-        DESTINATION_GITHUB_USERNAME: ${{ inputs.destination-github-username }}
-        DESTINATION_REPOSITORY_NAME: ${{ inputs.destination-repository-name }}
+        DESTINATION_REPOSITORY_FOLDER: ${{ inputs.destination-repository-folder }}
+        DESTINATION_GITHUB_REPOSITORY_USERNAME: ${{ inputs.destination-github-repository-username }}
+        DESTINATION_GITHUB_REPOSITORY_NAME: ${{ inputs.destination-github-repository-name }}
         USER_EMAIL: ${{ inputs.user-email }}
+        USER_NAME: ${{ inputs.user-name }}
         TARGET_BRANCH: ${{ inputs.target-branch }}
         COMMIT_MESSAGE: ${{ inputs.commit-message }}
-        TARGET_REPO_DIRECTORY: ${{ inputs.target-repo-directory }}
+
 branding:
   icon: 'git-commit'
   color: 'green'
