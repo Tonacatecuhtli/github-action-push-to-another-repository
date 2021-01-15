@@ -24,12 +24,14 @@ echo "Cloning: git@github.com:$DESTINATION_GITHUB_REPOSITORY_USERNAME/$DESTINATI
 git clone --single-branch --branch "$TARGET_BRANCH" "git@github.com:$DESTINATION_GITHUB_REPOSITORY_USERNAME/$DESTINATION_GITHUB_REPOSITORY_NAME.git" "$CLONE_DIR"
 ls -la "$CLONE_DIR"
 
-TARGET_DIR=$(mktemp -d)
+TEMP_DIR=$(mktemp -d)
+TARGET_DIR="$TEMP_DIR/$DESTINATION_REPOSITORY_FOLDER"
+mkdir -p TARGET_DIR
 mv "$CLONE_DIR/.git" "$TARGET_DIR"
 
 echo "Copying contents to git repo"
-cp -ra "$SOURCE_DIRECTORY"/. "$TARGET_DIR"/"$DESTINATION_REPOSITORY_FOLDER"/
-cd "$TARGET_DIR"/"$DESTINATION_REPOSITORY_FOLDER"/
+cp -ra "$SOURCE_DIRECTORY"/. "$TARGET_DIR"
+cd "$TARGET_DIR"
 
 echo "Files that will be pushed"
 ls -la
