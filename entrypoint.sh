@@ -24,14 +24,15 @@ echo "Cloning: git@github.com:$DESTINATION_GITHUB_REPOSITORY_USERNAME/$DESTINATI
 git clone --single-branch --branch "$TARGET_BRANCH" "git@github.com:$DESTINATION_GITHUB_REPOSITORY_USERNAME/$DESTINATION_GITHUB_REPOSITORY_NAME.git" "$CLONE_DIR"
 ls -la "$CLONE_DIR"
 
-TEMP_DIR=$(mktemp -d)
-TARGET_DIR="$TEMP_DIR/$DESTINATION_REPOSITORY_FOLDER"
-mkdir -p TARGET_DIR
-mv "$CLONE_DIR/.git" "$TARGET_DIR"
+echo "Create destination repository folder if not existent"
+mkdir -p "$CLONE_DIR"/"$DESTINATION_REPOSITORY_FOLDER"
+
+echo "Delete destination files to handle deletions"
+rm -rf "${CLONE_DIR:?}/$DESTINATION_REPOSITORY_FOLDER/*"
 
 echo "Copying contents to git repo"
-cp -ra "$SOURCE_DIRECTORY"/. "$TARGET_DIR"
-cd "$TARGET_DIR"
+cp -ra "$SOURCE_DIRECTORY"/. "$CLONE_DIR"/"$DESTINATION_REPOSITORY_FOLDER"/
+cd "$CLONE_DIR"/"$DESTINATION_REPOSITORY_FOLDER"/
 
 echo "Files that will be pushed"
 ls -la
