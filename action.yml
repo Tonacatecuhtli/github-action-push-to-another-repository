@@ -1,31 +1,31 @@
-name: 'Push directory to another repository'
-description: 'Useful to push files to another repository to be used, for example, via github pages'
+name: "Push directory to another repository"
+description: "Useful to push files to another repository to be used, for example, via github pages"
 inputs:
   source-directory:
-    description: 'Source directory from the origin directory'
+    description: "Source directory from the origin directory"
     required: true
   destination-github-repository-username:
-    description: 'Name of the destination GitHub username/organization'
+    description: "Name of the destination GitHub username/organization"
     required: true
   destination-github-repository-name:
-    description: 'Name of the destination GitHub repository'
+    description: "Name of the destination GitHub repository"
     required: true
   destination-repository-folder:
-    description: '[Optional] Path to the folder of the destination repository the files should be committed'
+    description: "[Optional] Path to the folder of the destination repository the files should be committed"
     required: false
-    default: '/'
+    default: "/"
   user-email:
-    description: 'Sets: git config --global user.email'
+    description: "Sets: git config --global user.email"
     required: true
   user-name:
-    description: 'Sets: git config --global user.name'
+    description: "Sets: git config --global user.name"
     required: true
   target-branch:
     description: '[Optional] set target branch name for the destination repository. Defaults to "master"'
-    default: 'master'
+    default: "master"
     required: false
   commit-message:
-    description: '[Optional] commit message for the output repository. DEFAULT: Updated $DESTINATION_GITHUB_REPOSITORY_NAME from $GITHUB_REPOSITORY with user $USER_EMAIL'
+    description: "[Optional] commit message for the output repository. DEFAULT: Updated $DESTINATION_GITHUB_REPOSITORY_NAME from $GITHUB_REPOSITORY with user $USER_EMAIL"
     required: false
 
 runs:
@@ -44,5 +44,5 @@ runs:
         COMMIT_MESSAGE: ${{ inputs.commit-message }}
 
 branding:
-  icon: 'git-commit'
-  color: 'green'
+  icon: "git-commit"
+  color: "green"
