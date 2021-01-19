@@ -39,10 +39,10 @@ git status
 
 # git diff-index : to avoid doing the git commit failing if there are no changes to be commit
 git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE
-Folder: $DESTINATION_REPOSITORY_FOLDER \n
-Source repository: $GITHUB_REPOSITORY \n
-Source branch: $GITHUB_REF \n
-Source commit: $GITHUB_SHA \n
+Folder: $DESTINATION_REPOSITORY_FOLDER
+Source repository: $GITHUB_REPOSITORY
+Source branch: $GITHUB_REF
+Source commit: $GITHUB_SHA
 User-Email: $USER_EMAIL"
 
 echo "Pushing git commit"
