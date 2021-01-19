@@ -38,7 +38,7 @@ git add .
 git status
 
 # git diff-index : to avoid doing the git commit failing if there are no changes to be commit
-git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE \n
+git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE
 Folder: $DESTINATION_REPOSITORY_FOLDER \n
 Source repository: $GITHUB_REPOSITORY \n
 Source branch: $GITHUB_REF \n
