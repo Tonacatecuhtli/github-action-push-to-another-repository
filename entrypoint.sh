@@ -51,7 +51,7 @@ git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE" \
  -m "Folder: $DESTINATION_REPOSITORY_FOLDER" \
  -m "Source repository: $GITHUB_REPOSITORY" \
  -m "Source branch: $GITHUB_REF" \
- -m "Source commit $GITHUB_SHA" \
+ -m "Source commit: $GITHUB_SHA" \
  -m "User-Email: $USER_EMAIL"
 
 echo "Pushing git commit"
