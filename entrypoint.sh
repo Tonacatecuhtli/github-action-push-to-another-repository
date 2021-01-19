@@ -43,7 +43,7 @@ Folder: $DESTINATION_REPOSITORY_FOLDER
 Source repository: $GITHUB_REPOSITORY
 Source branch: $GITHUB_REF
 Source commit: $GITHUB_SHA
-User-Email: $USER_EMAIL"
+User email: $USER_EMAIL"
 
 echo "Pushing git commit"
 # --set-upstream: sets de branch when pushing to a branch that does not exist
