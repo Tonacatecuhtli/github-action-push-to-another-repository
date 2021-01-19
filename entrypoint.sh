@@ -40,14 +40,19 @@ ls -la
 echo "Adding git commit"
 if [ -z "$COMMIT_MESSAGE" ]
 then
-  COMMIT_MESSAGE="Updated $DESTINATION_GITHUB_REPOSITORY_NAME from $GITHUB_REPOSITORY with user $USER_EMAIL"
+  COMMIT_MESSAGE="Updated"
 fi
 
 git add .
 git status
 
 # git diff-index : to avoid doing the git commit failing if there are no changes to be commit
-git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE"
+git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE" \
+ -m "Folder: $DESTINATION_REPOSITORY_FOLDER" \
+ -m "Source repository: $GITHUB_REPOSITORY" \
+ -m "Source branch: $GITHUB_REF" \
+ -m "Source commit $GITHUB_SHA" \
+ -m "User-Email: $USER_EMAIL"
 
 echo "Pushing git commit"
 # --set-upstream: sets de branch when pushing to a branch that does not exist
