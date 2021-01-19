@@ -3,15 +3,6 @@
 set -e  # if a command fails it stops the execution
 echo "Starts"
 
-echo "SOURCE_DIRECTORY $SOURCE_DIRECTORY"
-echo "TARGET_BRANCH $TARGET_BRANCH"
-echo "USER_EMAIL $USER_EMAIL"
-echo "USER_NAME $USER_NAME"
-echo "DESTINATION_GITHUB_REPOSITORY_USERNAME $DESTINATION_GITHUB_REPOSITORY_USERNAME"
-echo "DESTINATION_GITHUB_REPOSITORY_NAME $DESTINATION_GITHUB_REPOSITORY_NAME"
-echo "DESTINATION_REPOSITORY_FOLDER $DESTINATION_REPOSITORY_FOLDER"
-echo "COMMIT_MESSAGE $COMMIT_MESSAGE"
-
 set -u  # script fails if trying to access to an undefined variable
 
 CLONE_DIR=$(mktemp -d)
@@ -47,12 +38,12 @@ git add .
 git status
 
 # git diff-index : to avoid doing the git commit failing if there are no changes to be commit
-git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE" \
- -m "Folder: $DESTINATION_REPOSITORY_FOLDER" \
- -m "Source repository: $GITHUB_REPOSITORY" \
- -m "Source branch: $GITHUB_REF" \
- -m "Source commit: $GITHUB_SHA" \
- -m "User-Email: $USER_EMAIL"
+git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE \
+Folder: $DESTINATION_REPOSITORY_FOLDER \n
+Source repository: $GITHUB_REPOSITORY \n
+Source branch: $GITHUB_REF \n
+Source commit: $GITHUB_SHA \n
+User-Email: $USER_EMAIL"
 
 echo "Pushing git commit"
 # --set-upstream: sets de branch when pushing to a branch that does not exist
