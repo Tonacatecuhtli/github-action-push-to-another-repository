@@ -25,6 +25,9 @@ echo "Copying contents to git repo"
 cp -ra "$SOURCE_DIRECTORY"/. "$CLONE_DIR"/"$DESTINATION_REPOSITORY_FOLDER"/
 cd "$CLONE_DIR"/"$DESTINATION_REPOSITORY_FOLDER"/
 
+echo "Delete .git, .idea and .github folder"
+rm -rf .git .github .idea
+
 echo "Files that will be pushed"
 ls -la
 
